@@ -9,11 +9,8 @@ class Posts extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.newPost) {
-      console.log('hello');
-      
-      this.props.posts.unshift(nextProps.newPost)
-    }
+    if (nextProps.newPost)
+      this.props.posts.unshift(nextProps.newPost)      
   }
 
   render() {
