@@ -11,11 +11,32 @@ class PostForm extends Component {
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value })
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    const post = {
+      title: this.state.title,
+      body: this.state.body,
+    }
+
+    const postOptions = {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(post)
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/posts', postOptions)
+      .then(res => res.json())
+      .then(json => console.log(json))
+  }
+
   render() {
     return (
       <div>
         <h1>Add Post</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="title">Title: </label><br/>
             <input id="title" type="text" name="title" value={this.state.title} onChange={this.handleChange} />
