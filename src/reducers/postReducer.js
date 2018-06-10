@@ -13,8 +13,13 @@ export default function(state = initialState, action) {
         ...state,
         items: action.payload
       }
+    case NEW_POST:
+      console.log('reducing')
+      return {
+        ...state,
+        item: action.payload
+      }
     default:
       return state
-      break
   }
 }
